@@ -1,4 +1,11 @@
-word = input("Enter word to guess:").upper()
+import string
+while True:
+    word = input("Enter word to guess:").upper()
+    if word.isalpha():
+        break
+    else:
+        print("Please enter a word without numbers")
+
 vowels = ["A", "E", "I", "O", "U"]
 numberOfUniqueLetterToGuess = []
 for i in word:
@@ -9,16 +16,33 @@ for i in word:
         if i not in numberOfUniqueLetterToGuess:
             numberOfUniqueLetterToGuess.append(i)
 print()
-#print(numberOfUniqueLetterToGuess)
+
 guessedLetterList = []
 hangman = 5
 while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess)):
-    guessedLetter = input("Guess a consonant letter:").upper()
+    while True:
+        guessedLetter = input("Guess a consonant letter:").upper()
+        if len(guessedLetter) != 1 or guessedLetter not in string.ascii_letters:
+            print("Please enter a single alphabet:")
+        else:
+            break
     if guessedLetter in vowels:
-        guessedLetter = input("Please enter a consonant only:").upper()
+        while True:
+            guessedLetter = input("Please enter a consonant only:").upper()
+            if len(guessedLetter) != 1 or guessedLetter not in string.ascii_letters:
+                print("Please enter a single alphabet:")
+            else:
+                break
     elif guessedLetter in guessedLetterList:
         print("You have already guessed", guessedLetter)
-        guessedLetter = input("Guess a consonant letter:").upper()
+        while True:
+            guessedLetter = input("Guess a consonant letter:").upper()
+            if len(guessedLetter) != 1 or guessedLetter not in string.ascii_letters:
+                print("Please enter a single alphabet:")
+            else:
+                break
+
+
     if guessedLetter in word:
         guessedLetterList.append(guessedLetter)
         for i in word:
@@ -31,7 +55,7 @@ while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess
         hangman -= 1
         print(chancesLeft, "guesses left")
     print()
-#print(guessedLetterList)
+
 if hangman == 0:
     print("You lost ;/")
 else:
