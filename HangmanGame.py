@@ -1,4 +1,13 @@
 import string
+
+
+def verifyInput(guessedLetter, vowels, guessedLetterList):
+    if (guessedLetter.isalpha() and len(guessedLetter) == 1) and (guessedLetter not in guessedLetterList) and (guessedLetter not in vowels):
+        return True
+    else:
+        print("error in input")
+        return False
+
 while True:
     word = input("Enter word to guess:").upper()
     if word.isalpha() and len(word) >= 5:
@@ -22,25 +31,8 @@ hangman = 5
 while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess)):
     while True:
         guessedLetter = input("Guess a consonant letter:").upper()
-        if len(guessedLetter) != 1 or guessedLetter not in string.ascii_letters:
-            print("Please enter a single alphabet:")
-        else:
+        if verifyInput(guessedLetter, vowels, guessedLetterList):
             break
-    if guessedLetter in vowels:
-        while True:
-            guessedLetter = input("Please enter a consonant only:").upper()
-            if len(guessedLetter) != 1 or guessedLetter not in string.ascii_letters:
-                print("Please enter a single alphabet:")
-            else:
-                break
-    elif guessedLetter in guessedLetterList:
-        print("You have already guessed", guessedLetter)
-        while True:
-            guessedLetter = input("Guess a consonant letter:").upper()
-            if len(guessedLetter) != 1 or guessedLetter not in string.ascii_letters:
-                print("Please enter a single alphabet:")
-            else:
-                break
 
     if guessedLetter in word:
         guessedLetterList.append(guessedLetter)
@@ -59,3 +51,4 @@ if hangman == 0:
     print("You lost ;/")
 else:
     print("Congratulations!!! You won :-)")
+
