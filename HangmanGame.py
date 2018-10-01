@@ -1,5 +1,5 @@
 word = input("Enter word to guess:").upper()
-vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+vowels = ["A", "E", "I", "O", "U"]
 print(type(vowels))
 numberOfUniqueLetterToGuess = []
 for i in word:
