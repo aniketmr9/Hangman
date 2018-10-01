@@ -1,6 +1,5 @@
 word = input("Enter word to guess:").upper()
 vowels = ["A", "E", "I", "O", "U"]
-print(type(vowels))
 numberOfUniqueLetterToGuess = []
 for i in word:
     if i in vowels:
@@ -23,9 +22,7 @@ while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess
     if guessedLetter in word:
         guessedLetterList.append(guessedLetter)
         for i in word:
-            if i in vowels:
-                print(i, end=" ")
-            elif i in guessedLetterList:
+            if i in vowels or i in guessedLetterList:
                 print(i, end=" ")
             else:
                 print("_", end=" ")
