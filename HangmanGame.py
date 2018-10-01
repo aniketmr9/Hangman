@@ -1,10 +1,10 @@
 import string
 while True:
     word = input("Enter word to guess:").upper()
-    if word.isalpha():
+    if word.isalpha() and len(word) >= 5:
         break
     else:
-        print("Please enter a word without numbers")
+        print("Please enter at least a 5 letters long word without numbers or special character")
 
 vowels = ["A", "E", "I", "O", "U"]
 numberOfUniqueLetterToGuess = []
@@ -16,7 +16,7 @@ for i in word:
         if i not in numberOfUniqueLetterToGuess:
             numberOfUniqueLetterToGuess.append(i)
 print()
-
+print(numberOfUniqueLetterToGuess)
 guessedLetterList = []
 hangman = 5
 while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess)):
@@ -42,7 +42,6 @@ while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess
             else:
                 break
 
-
     if guessedLetter in word:
         guessedLetterList.append(guessedLetter)
         for i in word:
@@ -55,7 +54,7 @@ while hangman > 0 and (len(guessedLetterList) != len(numberOfUniqueLetterToGuess
         hangman -= 1
         print(chancesLeft, "guesses left")
     print()
-
+    print(guessedLetterList)
 if hangman == 0:
     print("You lost ;/")
 else:
