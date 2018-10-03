@@ -3,8 +3,6 @@ import random
 file = open("words.txt", "r")
 lines = file.read().split(",")
 random.shuffle(lines)
-print(lines)
-print(len(lines))
 
 
 def verifyInput(guessedLetter, vowels, guessedLetterList):
