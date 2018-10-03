@@ -1,3 +1,12 @@
+import random
+
+file = open("words.txt", "r")
+lines = file.read().split(",")
+random.shuffle(lines)
+print(lines)
+print(len(lines))
+
+
 def verifyInput(guessedLetter, vowels, guessedLetterList):
     if not (guessedLetter.isalpha() and len(guessedLetter) == 1):
         print("Please enter a single alphabet")
@@ -12,14 +21,8 @@ def verifyInput(guessedLetter, vowels, guessedLetterList):
         return True
 
 
-def hangmanGame():
-    while True:
-        word = input("Enter word to guess:").upper()
-        if word.isalpha() and len(word) >= 5:
-            break
-        else:
-            print("Please enter at least a 5 letters long word without numbers or special character")
-
+def hangmanGame(wordCount):
+    word = lines[wordCount].upper()
     vowels = ["A", "E", "I", "O", "U"]
     numberOfUniqueLetterToGuess = []
     for i in word:
@@ -53,10 +56,15 @@ def hangmanGame():
         print()
         #print(guessedLetterList)
     if hangman == 0:
-        print("You lost -_-")
+        print("You lost -_-\n")
+        print("Correct word was", word)
+        exit(1)
     else:
-        print("Congratulations!!! You won :-)")
+        print("\nYou have guessed the word correctly\n")
+        wordCount += 1
+        hangmanGame(wordCount)
 
 
 if __name__ == "__main__":
-    hangmanGame()
+    hangmanGame(0)
+
